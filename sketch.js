@@ -12,6 +12,8 @@ function setup() {
   database = firebase.database();
   foodStock = database.ref("Food");
   foodStock.on("value", readStock);
+  foodStock.set(20);
+
   dog = createSprite(250,350,10,60);
   dog.addImage(dogImg);
   dog.scale = 0.2;
@@ -19,7 +21,7 @@ function setup() {
 
 
 function draw() {  
-  background(46, 139, 87);
+  background("green");
   if(foodS!== undefined){
     textSize(20);    
     fill(255);    
@@ -34,6 +36,12 @@ function draw() {
     if(keyWentUp(UP_ARROW)){
       dog.addImage(dogImg);
     }
+  
+
+    if(foodS === 0){
+      foodS = 20;
+    }
+
 
     drawSprites();
   }
